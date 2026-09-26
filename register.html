@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register - CampusHub</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(11, 77, 51, 0.25),
+                    transparent 45%
+                ),
+                #f5f8f3;
+
+            color: #173b2b;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #062e1f,
+                    #0b4d33,
+                    #123f2d
+                );
+
+            color: white;
+
+            padding: 20px 45px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 6px 25px
+                rgba(6, 46, 31, 0.25);
+        }
+
+        .logo {
+            font-size: 28px;
+
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+
+            gap: 24px;
+
+            align-items: center;
+        }
+
+        nav a {
+            color: #f4f1df;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+
+        /* REGISTER AREA */
+
+        .register-section {
+
+            min-height: calc(100vh - 85px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 50px 20px;
+        }
+
+
+        /* REGISTER CARD */
+
+        .register-card {
+
+            width: 100%;
+
+            max-width: 450px;
+
+            background: white;
+
+            padding: 42px;
+
+            border-radius: 22px;
+
+            border: 1px solid #dce6dc;
+
+            box-shadow:
+                0 20px 50px
+                rgba(6, 46, 31, 0.14);
+
+            text-align: center;
+        }
+
+        .register-card h1 {
+
+            margin: 0;
+
+            color: #073b28;
+
+            font-size: 34px;
+        }
+
+        .subtitle {
+
+            color: #66756d;
+
+            margin: 10px 0 30px;
+
+            font-size: 15px;
+        }
+
+
+        /* INPUTS */
+
+        .register-card input {
+
+            width: 100%;
+
+            padding: 14px 16px;
+
+            margin-bottom: 16px;
+
+            border: 1px solid #d3ded5;
+
+            border-radius: 10px;
+
+            background: #fbfdfb;
+
+            color: #173b2b;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        .register-card input:focus {
+
+            border-color: #c5a227;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(197, 162, 39, 0.12);
+        }
+
+
+        /* BUTTON */
+
+        .btn {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b4d33,
+                    #087044
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px
+                rgba(8, 112, 68, 0.22);
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+
+            transform: translateY(-3px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087044,
+                    #0b4d33
+                );
+
+            box-shadow:
+                0 12px 25px
+                rgba(8, 112, 68, 0.30);
+        }
+
+
+        /* LOGIN LINK */
+
+        .login-text {
+
+            margin-top: 25px;
+
+            color: #66756d;
+
+            font-size: 14px;
+        }
+
+        .login-text a {
+
+            color: #0b4d33;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+
+            color: #c5a227;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 18px;
+            }
+
+            nav {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 14px;
+            }
+
+            .register-section {
+
+                padding: 35px 15px;
+            }
+
+            .register-card {
+
+                padding: 30px 22px;
+            }
+
+            .register-card h1 {
+
+                font-size: 29px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            CampusHub
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="notes.html">
+                Resources
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- REGISTER -->
+
+    <section class="register-section">
+
+        <div class="register-card">
+
+            <h1>
+                Create Student Account
+            </h1>
+
+            <p class="subtitle">
+                Join CampusHub and share study resources
+            </p>
+
+
+            <form id="registerForm">
+
+
+                <input
+                    type="text"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Create an email"
+                    required
+                >
+
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                    id="registerBtn">
+
+                    Create Account
+
+                </button>
+
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login here
+                </a>
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUPABASE + REGISTER LOGIC -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="js/supabase.js"></script>
+
+    <script src="js/register.js"></script>
+
+
+</body>
+
+</html>
