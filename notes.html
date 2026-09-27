@@ -264,12 +264,16 @@
 
             data.forEach(file => {
 
-                const { data: urlData } =
-                    supabaseClient
-                        .storage
-                        .from("Resources")
-                        .getPublicUrl(file.name);
+                const { data: urlData, error: urlError } =
+    await supabaseClient
+        .storage
+        .from("Resources")
+        .createSignedUrl(file.name, 3600);
 
+if (urlError) {
+    console.error(urlError);
+    return;
+}
 
                 const item =
                     document.createElement("div");
