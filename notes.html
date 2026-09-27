@@ -227,14 +227,22 @@
                 "<p>Loading resources...</p>";
 
 
-            const { data, error } =
-                await supabaseClient
-                    .storage
-                    .from("Resources")
-                    .list("", {
-                        limit: 100,
-                        offset: 0
-                    });
+           const { data: { user } } =
+    await supabaseClient.auth.getUser();
+
+if (!user) {
+    window.location.href = "register.html";
+    return;
+}
+
+const { data, error } =
+    await supabaseClient
+        .storage
+        .from("Resources")
+        .list(user.id, {
+            limit: 100,
+            offset: 0
+        });
 
 
             console.log("Resources:", data);
