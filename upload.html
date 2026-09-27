@@ -25,8 +25,6 @@
             color: #173b2b;
         }
 
-        /* HEADER */
-
         header {
             background: linear-gradient(
                 135deg,
@@ -36,13 +34,10 @@
             );
 
             color: white;
-
             padding: 20px 45px;
 
             display: flex;
-
             justify-content: space-between;
-
             align-items: center;
 
             box-shadow:
@@ -73,12 +68,11 @@
             color: #d4af37;
         }
 
-        /* MAIN CONTAINER */
-
         .container {
             width: 90%;
             max-width: 650px;
             margin: 60px auto;
+
             background: white;
             padding: 40px;
             border-radius: 22px;
@@ -88,8 +82,6 @@
                 0 18px 45px
                 rgba(6, 46, 31, 0.10);
         }
-
-        /* TITLE */
 
         h1 {
             text-align: center;
@@ -105,8 +97,6 @@
             margin-bottom: 30px;
         }
 
-        /* FORM */
-
         label {
             display: block;
             margin-top: 20px;
@@ -120,10 +110,13 @@
         textarea {
             width: 100%;
             padding: 13px;
+
             border: 1px solid #d3ded5;
             border-radius: 10px;
+
             background: #fbfdfb;
             color: #173b2b;
+
             font-size: 15px;
             outline: none;
             transition: 0.3s;
@@ -144,15 +137,11 @@
             resize: vertical;
         }
 
-        /* FILE INPUT */
-
         input[type="file"] {
             background: #f5f8f3;
             cursor: pointer;
             padding: 12px;
         }
-
-        /* BUTTON */
 
         button {
             width: 100%;
@@ -169,6 +158,7 @@
             color: white;
             border: none;
             border-radius: 10px;
+
             cursor: pointer;
             font-size: 16px;
             font-weight: bold;
@@ -195,8 +185,6 @@
                 rgba(8, 112, 68, 0.30);
         }
 
-        /* MOBILE */
-
         @media (max-width: 700px) {
 
             header {
@@ -220,70 +208,47 @@
             h1 {
                 font-size: 29px;
             }
+
         }
 
     </style>
 
 </head>
 
-
 <body>
-
-
-    <!-- HEADER -->
 
     <header>
 
-        <h2>
-            CampusHub
-        </h2>
+        <h2>CampusHub</h2>
 
         <nav>
 
-            <a href="index.html">
-                Home
-            </a>
+            <a href="index.html">Home</a>
 
-            <a href="notes.html">
-                Resources
-            </a>
+            <a href="notes.html">Resources</a>
 
-            <a href="upload.html">
-                Upload
-            </a>
+            <a href="upload.html">Upload</a>
 
-            <a href="login.html">
-                Login
-            </a>
+            <a href="login.html">Login</a>
 
-            <a href="register.html">
-                Register
-            </a>
+            <a href="register.html">Register</a>
 
         </nav>
 
     </header>
 
 
-    <!-- UPLOAD FORM -->
-
     <div class="container">
 
-        <h1>
-            Upload Resource
-        </h1>
+        <h1>Upload Resource</h1>
 
         <p class="subtitle">
             Share useful study materials with fellow students.
         </p>
 
-
         <form id="uploadForm">
 
-
-            <label>
-                Resource Title
-            </label>
+            <label>Resource Title</label>
 
             <input
                 type="text"
@@ -292,10 +257,7 @@
                 required
             >
 
-
-            <label>
-                Subject
-            </label>
+            <label>Subject</label>
 
             <select id="subject" required>
 
@@ -329,20 +291,14 @@
 
             </select>
 
-
-            <label>
-                Description
-            </label>
+            <label>Description</label>
 
             <textarea
                 id="description"
                 placeholder="Enter short description"
             ></textarea>
 
-
-            <label>
-                Upload File
-            </label>
+            <label>Upload File</label>
 
             <input
                 type="file"
@@ -350,18 +306,14 @@
                 required
             >
 
-
             <button type="submit">
                 Upload Resource
             </button>
-
 
         </form>
 
     </div>
 
-
-    <!-- SUPABASE -->
 
     <script>
 
@@ -379,8 +331,6 @@
             );
 
 
-        /* CHECK LOGIN */
-
         async function checkLogin() {
 
             const { data: { session } } =
@@ -391,14 +341,13 @@
                 window.location.href =
                     "register.html";
 
+                return;
             }
         }
 
 
         checkLogin();
 
-
-        /* UPLOAD FORM */
 
         document
             .getElementById("uploadForm")
@@ -408,8 +357,6 @@
 
                     event.preventDefault();
 
-
-                    /* GET FORM VALUES */
 
                     const title =
                         document
@@ -432,8 +379,6 @@
                         .files[0];
 
 
-                    /* CHECK FILE */
-
                     if (!file) {
 
                         alert(
@@ -444,10 +389,10 @@
                     }
 
 
-                    /* GET LOGGED-IN USER */
-
                     const { data: { user } } =
-                        await window.supabaseClient.auth.getUser();
+                        await window.supabaseClient
+                            .auth
+                            .getUser();
 
 
                     if (!user) {
@@ -463,15 +408,11 @@
                     }
 
 
-                    /* CREATE FILE NAME */
-
                     const fileName =
                         Date.now() +
                         "_" +
                         file.name;
 
-
-                    /* UPLOAD FILE */
 
                     const { data, error } =
                         await window.supabaseClient
@@ -493,8 +434,6 @@
                         return;
                     }
 
-
-                    /* SAVE RESOURCE DETAILS */
 
                     const { error: dbError } =
                         await window.supabaseClient
@@ -521,8 +460,6 @@
                     }
 
 
-                    /* SUCCESS */
-
                     alert(
                         "Resource uploaded successfully!"
                     );
@@ -537,7 +474,5 @@
 
     </script>
 
-
 </body>
-
 </html>
