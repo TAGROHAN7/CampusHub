@@ -446,7 +446,28 @@
 
     </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const SUPABASE_URL = "https://ebmwmgekpfedcwwzvmyk.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_K1ZLfHc5IsUQHr7cB81Wrg_aUEPmHyR";
+
+    const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    async function checkLogin() {
+        const { data: { session } } =
+            await supabaseClient.auth.getSession();
+
+        if (!session) {
+            window.location.href = "register.html";
+        }
+    }
+
+    checkLogin();
+</script>
 
 </body>
-
 </html>
