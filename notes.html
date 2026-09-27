@@ -235,6 +235,14 @@ if (!user) {
     return;
 }
 
+const { data: { user } } =
+    await supabaseClient.auth.getUser();
+
+if (!user) {
+    window.location.href = "register.html";
+    return;
+}
+
 const { data, error } =
     await supabaseClient
         .storage
