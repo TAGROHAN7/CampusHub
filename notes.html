@@ -276,7 +276,7 @@ const { data, error } =
     await supabaseClient
         .storage
         .from("Resources")
-        .createSignedUrl(file.name, 3600);
+        .createSignedUrl(user.id + "/" + file.name, 3600);
 
 if (urlError) {
     console.error(urlError);
