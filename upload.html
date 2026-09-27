@@ -409,10 +409,11 @@
 
 
                     const fileName =
-                        Date.now() +
-                        "_" +
-                        file.name;
-
+    user.id +
+    "/" +
+    Date.now() +
+    "_" +
+    file.name;
 
                     const { data, error } =
                         await window.supabaseClient
