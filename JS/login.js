@@ -1,24 +1,40 @@
-const supabaseClient = window.supabaseClient;
-
 const loginForm = document.getElementById("loginForm");
 
-loginForm.addEventListener("submit", async function (e) {
-    e.preventDefault();
+if (loginForm) {
 
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+    loginForm.addEventListener("submit", async function (event) {
 
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
+        event.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        if (!email || !password) {
+            alert("Please enter email and password.");
+            return;
+        }
+
+        const { data, error } =
+            await window.supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+        if (error) {
+
+            alert("Login failed: " + error.message);
+
+            return;
+        }
+
+        if (data.user) {
+
+            alert("Login successful!");
+
+            window.location.href = "notes.html";
+
+        }
+
     });
 
-    if (error) {
-        document.getElementById("loginMessage").textContent = error.message;
-        return;
-    }
-
-    document.getElementById("loginMessage").textContent = "Login successful!";
-
-    window.location.href = "index.html";
-});
+}
