@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -210,129 +211,7 @@
 
         const SUPABASE_KEY =
             "sb_publishable_K1ZLfHc5IsUQHr7cB81Wrg_aUEPmHyR";
-<script>
-    const supabaseClient =
-        supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
 
-    async function loadResources() {
-
-        const container =
-            document.getElementById("resources");
-
-        container.innerHTML =
-            "<p>Loading resources...</p>";
-
-        const { data: { user } } =
-            await supabaseClient.auth.getUser();
-
-        if (!user) {
-            window.location.href = "register.html";
-            return;
-        }
-
-        const { data, error } =
-            await supabaseClient
-                .from("Resources")
-                .select("*")
-                .eq("user_id", user.id);
-
-        if (error) {
-            console.error(error);
-            container.innerHTML =
-                "<p>Failed to load resources.</p>";
-            return;
-        }
-
-        if (!data || data.length === 0) {
-            container.innerHTML =
-                "<p>No resources uploaded yet.</p>";
-            return;
-        }
-
-        container.innerHTML = "";
-
-        for (const resource of data) {
-
-            const { data: urlData, error: urlError } =
-                await supabaseClient
-                    .storage
-                    .from("Resources")
-                    .createSignedUrl(
-                        resource.file_name,
-                        3600
-                    );
-
-            if (urlError) {
-                console.error(urlError);
-                continue;
-            }
-
-            const card =
-                document.createElement("div");
-
-            card.innerHTML = `
-                <h3>📄 ${resource.title}</h3>
-                <p><strong>Subject:</strong> ${resource.subject}</p>
-                <p>${resource.description}</p>
-                <a href="${urlData.signedUrl}" target="_blank">
-                    Open / Download
-                </a>
-            `;
-
-            container.appendChild(card);
-        }
-    }
-
-    loadResources();
-
-    document
-        .getElementById("searchBox")
-        .addEventListener("input", function () {
-
-            const searchText =
-                this.value.toLowerCase();
-
-            const items =
-                document.querySelectorAll(
-                    "#resources > div"
-                );
-
-            items.forEach(function (item) {
-
-                const fileName =
-                    item.innerText.toLowerCase();
-
-                if (fileName.includes(searchText)) {
-                    item.style.display = "block";
-                } else {
-                    item.style.display = "none";
-                }
-            });
-        });
-
-    document
-        .getElementById("logoutBtn")
-        .addEventListener("click", async function(event) {
-
-            event.preventDefault();
-
-            const { error } =
-                await supabaseClient.auth.signOut();
-
-            if (error) {
-                alert(
-                    "Logout failed: " +
-                    error.message
-                );
-                return;
-            }
-
-            window.location.href = "login.html";
-        });
-</script>
         const supabaseClient =
             supabase.createClient(
                 SUPABASE_URL,
@@ -340,7 +219,31 @@
             );
 
 
+        async function checkLogin() {
+
+            const { data: { session } } =
+                await supabaseClient.auth.getSession();
+
+            if (!session) {
+
+                window.location.href =
+                    "register.html";
+
+                return false;
+            }
+
+            return true;
+        }
+
+
         async function loadResources() {
+
+            const loggedIn =
+                await checkLogin();
+
+            if (!loggedIn) {
+                return;
+            }
 
             const container =
                 document.getElementById("resources");
@@ -349,91 +252,23 @@
                 "<p>Loading resources...</p>";
 
 
-           const { data: { user } } =
-    await supabaseClient.auth.getUser();
-
-if (!user) {
-    window.location.href = "register.html";
-    return;
-}
-    const { data, error } =
-        await supabaseClient
-            .from("Resources")
-            .select("*")
-            .eq("user_id", user.id);
-
-    if (error) {
-        console.error(error);
-        container.innerHTML =
-            "<p>Failed to load resources.</p>";
-        return;
-    }
-
-    if (!data || data.length === 0) {
-        container.innerHTML =
-            "<p>No resources uploaded yet.</p>";
-        return;
-    }
-
-    container.innerHTML = "";
-
-    for (const resource of data) {
-
-        const { data: urlData, error: urlError } =
-            await supabaseClient
-                .storage
-                .from("Resources")
-                .createSignedUrl(
-                    resource.file_name,
-                    3600
-                );
-
-        if (urlError) {
-            console.error(urlError);
-            continue;
-        }
-
-        const card =
-            document.createElement("div");
-
-        card.innerHTML = `
-            <h3>${resource.title}</h3>
-            <p><strong>Subject:</strong> ${resource.subject}</p>
-            <p>${resource.description}</p>
-            <a href="${urlData.signedUrl}" target="_blank">
-                Open Resource
-            </a>
-        `;
-
-        container.appendChild(card);
-    }
-}
-const { data: { user } } =
-    await supabaseClient.auth.getUser();
-
-if (!user) {
-    window.location.href = "register.html";
-    return;
-}
-
-const { data, error } =
-    await supabaseClient
-        .storage
-        .from("Resources")
-        .list(user.id, {
-            limit: 100,
-            offset: 0
-        });
+            const { data: { user } } =
+                await supabaseClient.auth.getUser();
 
 
-            console.log("Resources:", data);
-            console.log("Error:", error);
+            const { data, error } =
+                await supabaseClient
+                    .from("Resources")
+                    .select("*")
+                    .eq("user_id", user.id);
 
 
             if (error) {
 
+                console.error(error);
+
                 container.innerHTML =
-                    "<p>Unable to load resources.</p>";
+                    "<p>Failed to load resources.</p>";
 
                 return;
             }
@@ -451,28 +286,44 @@ const { data, error } =
             container.innerHTML = "";
 
 
-            data.forEach(file => {
+            for (const resource of data) {
 
                 const { data: urlData, error: urlError } =
-    await supabaseClient
-        .storage
-        .from("Resources")
-        .createSignedUrl(user.id + "/" + file.name, 3600);
+                    await supabaseClient
+                        .storage
+                        .from("Resources")
+                        .createSignedUrl(
+                            resource.file_name,
+                            3600
+                        );
 
-if (urlError) {
-    console.error(urlError);
-    return;
-}
 
-                const item =
+                if (urlError) {
+
+                    console.error(urlError);
+
+                    continue;
+                }
+
+
+                const card =
                     document.createElement("div");
 
 
-                item.innerHTML = `
-                    <h3>📄 ${file.name}</h3>
+                card.innerHTML = `
+                    <h3>📄 ${resource.title}</h3>
+
+                    <p>
+                        <strong>Subject:</strong>
+                        ${resource.subject}
+                    </p>
+
+                    <p>
+                        ${resource.description}
+                    </p>
 
                     <a
-                        href="${urlData.publicUrl}"
+                        href="${urlData.signedUrl}"
                         target="_blank"
                     >
                         Open / Download
@@ -480,10 +331,8 @@ if (urlError) {
                 `;
 
 
-                container.appendChild(item);
-
-            });
-
+                container.appendChild(card);
+            }
         }
 
 
@@ -492,78 +341,82 @@ if (urlError) {
 
         document
             .getElementById("searchBox")
-            .addEventListener("input", function () {
+            .addEventListener(
+                "input",
+                function () {
 
-                const searchText =
-                    this.value.toLowerCase();
+                    const searchText =
+                        this.value.toLowerCase();
 
-                const items =
-                    document.querySelectorAll(
-                        "#resources > div"
+
+                    const items =
+                        document.querySelectorAll(
+                            "#resources > div"
+                        );
+
+
+                    items.forEach(
+                        function (item) {
+
+                            const fileName =
+                                item.innerText
+                                    .toLowerCase();
+
+
+                            if (
+                                fileName.includes(
+                                    searchText
+                                )
+                            ) {
+
+                                item.style.display =
+                                    "block";
+
+                            } else {
+
+                                item.style.display =
+                                    "none";
+                            }
+                        }
                     );
-
-
-                items.forEach(function (item) {
-
-                    const fileName =
-                        item.innerText.toLowerCase();
-
-
-                    if (fileName.includes(searchText)) {
-
-                        item.style.display = "block";
-
-                    } else {
-
-                        item.style.display = "none";
-
-                    }
-
-                });
-
-            });
+                }
+            );
 
 
         document
             .getElementById("logoutBtn")
-            .addEventListener("click", async function(event) {
+            .addEventListener(
+                "click",
+                async function (event) {
 
-                event.preventDefault();
-
-
-                const { error } =
-                    await supabaseClient.auth.signOut();
+                    event.preventDefault();
 
 
-                if (error) {
+                    const { error } =
+                        await supabaseClient
+                            .auth
+                            .signOut();
 
-                    alert(
-                        "Logout failed: " +
-                        error.message
-                    );
 
-                    return;
+                    if (error) {
+
+                        alert(
+                            "Logout failed: " +
+                            error.message
+                        );
+
+                        return;
+                    }
+
+
+                    window.location.href =
+                        "login.html";
                 }
-
-
-                window.location.href =
-                    "login.html";
-
-            });
+            );
 
     </script>
-<script>
-    async function checkLogin() {
-        const { data: { session } } =
-            await supabaseClient.auth.getSession();
-
-        if (!session) {
-            window.location.href = "register.html";
-        }
-    }
-
-    checkLogin();
-</script>
 
 </body>
+
 </html>
+```
