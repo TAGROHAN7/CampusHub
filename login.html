@@ -10,11 +10,13 @@
 
     <title>Login - CampusHub</title>
 
+
     <style>
 
         * {
             box-sizing: border-box;
         }
+
 
         body {
             margin: 0;
@@ -61,11 +63,13 @@
                 rgba(6, 46, 31, 0.25);
         }
 
+
         .logo {
             font-size: 28px;
 
             font-weight: bold;
         }
+
 
         nav {
             display: flex;
@@ -74,6 +78,7 @@
 
             align-items: center;
         }
+
 
         nav a {
             color: #f4f1df;
@@ -86,6 +91,7 @@
 
             transition: 0.3s;
         }
+
 
         nav a:hover {
             color: #d4af37;
@@ -126,298 +132,4 @@
 
             box-shadow:
                 0 20px 50px
-                rgba(6, 46, 31, 0.14);
-
-            text-align: center;
-        }
-
-        .login-card h1 {
-
-            margin: 0;
-
-            color: #073b28;
-
-            font-size: 34px;
-        }
-
-        .login-card .subtitle {
-
-            color: #66756d;
-
-            margin: 10px 0 30px;
-
-            font-size: 15px;
-        }
-
-
-        /* INPUTS */
-
-        .login-card input {
-
-            width: 100%;
-
-            padding: 14px 16px;
-
-            margin-bottom: 16px;
-
-            border: 1px solid #d3ded5;
-
-            border-radius: 10px;
-
-            background: #fbfdfb;
-
-            color: #173b2b;
-
-            font-size: 15px;
-
-            outline: none;
-
-            transition: 0.3s;
-        }
-
-        .login-card input:focus {
-
-            border-color: #c5a227;
-
-            box-shadow:
-                0 0 0 4px
-                rgba(197, 162, 39, 0.12);
-        }
-
-
-        /* BUTTON */
-
-        .btn {
-
-            width: 100%;
-
-            padding: 14px;
-
-            margin-top: 8px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #0b4d33,
-                    #087044
-                );
-
-            color: white;
-
-            font-size: 16px;
-
-            font-weight: bold;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 8px 20px
-                rgba(8, 112, 68, 0.22);
-
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-
-            transform: translateY(-3px);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #087044,
-                    #0b4d33
-                );
-
-            box-shadow:
-                0 12px 25px
-                rgba(8, 112, 68, 0.30);
-        }
-
-
-        /* MESSAGE */
-
-        #loginMessage {
-
-            min-height: 20px;
-
-            margin-top: 18px;
-
-            font-size: 14px;
-        }
-
-
-        /* REGISTER LINK */
-
-        .register-text {
-
-            margin-top: 25px;
-
-            color: #66756d;
-
-            font-size: 14px;
-        }
-
-        .register-text a {
-
-            color: #0b4d33;
-
-            font-weight: bold;
-
-            text-decoration: none;
-        }
-
-        .register-text a:hover {
-
-            color: #c5a227;
-        }
-
-
-        /* MOBILE */
-
-        @media (max-width: 700px) {
-
-            header {
-
-                padding: 18px 20px;
-
-                flex-direction: column;
-
-                gap: 18px;
-            }
-
-            nav {
-
-                flex-wrap: wrap;
-
-                justify-content: center;
-
-                gap: 14px;
-            }
-
-            .login-section {
-
-                padding: 35px 15px;
-            }
-
-            .login-card {
-
-                padding: 30px 22px;
-            }
-
-            .login-card h1 {
-
-                font-size: 29px;
-            }
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-    <!-- HEADER -->
-
-    <header>
-
-        <div class="logo">
-            CampusHub
-        </div>
-
-        <nav>
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="notes.html">
-                Resources
-            </a>
-
-            <a href="register.html">
-                Register
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <!-- LOGIN -->
-
-    <section class="login-section">
-
-        <div class="login-card">
-
-            <h1>
-                Student Login
-            </h1>
-
-            <p class="subtitle">
-                Welcome back to CampusHub
-            </p>
-
-
-            <form id="loginForm">
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Enter your email"
-                    required
-                >
-
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Enter your password"
-                    required
-                >
-
-
-                <button
-                    type="submit"
-                    class="btn">
-                    Login
-                </button>
-
-            </form>
-
-
-            <p id="loginMessage"></p>
-
-
-            <p class="register-text">
-
-                Don't have an account?
-
-                <a href="register.html">
-                    Register here
-                </a>
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- SUPABASE + LOGIN LOGIC -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script src="JS/SUPABASE.JS"></script>
-
-    <script src="JS/login.js"></script>
-
-
-</body>
-
-</html>
+                rgba(6, 46, 31
