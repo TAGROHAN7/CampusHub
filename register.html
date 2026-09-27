@@ -10,11 +10,13 @@
 
     <title>Register - CampusHub</title>
 
+
     <style>
 
         * {
             box-sizing: border-box;
         }
+
 
         body {
             margin: 0;
@@ -61,11 +63,13 @@
                 rgba(6, 46, 31, 0.25);
         }
 
+
         .logo {
             font-size: 28px;
 
             font-weight: bold;
         }
+
 
         nav {
             display: flex;
@@ -74,6 +78,7 @@
 
             align-items: center;
         }
+
 
         nav a {
             color: #f4f1df;
@@ -86,6 +91,7 @@
 
             transition: 0.3s;
         }
+
 
         nav a:hover {
             color: #d4af37;
@@ -131,6 +137,7 @@
             text-align: center;
         }
 
+
         .register-card h1 {
 
             margin: 0;
@@ -139,6 +146,7 @@
 
             font-size: 34px;
         }
+
 
         .subtitle {
 
@@ -174,6 +182,7 @@
 
             transition: 0.3s;
         }
+
 
         .register-card input:focus {
 
@@ -221,6 +230,7 @@
             transition: 0.3s;
         }
 
+
         .btn:hover {
 
             transform: translateY(-3px);
@@ -229,192 +239,4 @@
                 linear-gradient(
                     135deg,
                     #087044,
-                    #0b4d33
-                );
-
-            box-shadow:
-                0 12px 25px
-                rgba(8, 112, 68, 0.30);
-        }
-
-
-        /* LOGIN LINK */
-
-        .login-text {
-
-            margin-top: 25px;
-
-            color: #66756d;
-
-            font-size: 14px;
-        }
-
-        .login-text a {
-
-            color: #0b4d33;
-
-            font-weight: bold;
-
-            text-decoration: none;
-        }
-
-        .login-text a:hover {
-
-            color: #c5a227;
-        }
-
-
-        /* MOBILE */
-
-        @media (max-width: 700px) {
-
-            header {
-
-                padding: 18px 20px;
-
-                flex-direction: column;
-
-                gap: 18px;
-            }
-
-            nav {
-
-                flex-wrap: wrap;
-
-                justify-content: center;
-
-                gap: 14px;
-            }
-
-            .register-section {
-
-                padding: 35px 15px;
-            }
-
-            .register-card {
-
-                padding: 30px 22px;
-            }
-
-            .register-card h1 {
-
-                font-size: 29px;
-            }
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-    <!-- HEADER -->
-
-    <header>
-
-        <div class="logo">
-            CampusHub
-        </div>
-
-        <nav>
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="notes.html">
-                Resources
-            </a>
-
-            <a href="login.html">
-                Login
-            </a>
-
-        </nav>
-
-    </header>
-
-
-    <!-- REGISTER -->
-
-    <section class="register-section">
-
-        <div class="register-card">
-
-            <h1>
-                Create Student Account
-            </h1>
-
-            <p class="subtitle">
-                Join CampusHub and share study resources
-            </p>
-
-
-            <form id="registerForm">
-
-
-                <input
-                    type="text"
-                    placeholder="Enter your full name"
-                    required
-                >
-
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Create an email"
-                    required
-                >
-
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Create a password"
-                    required
-                >
-
-
-                <button
-                    type="submit"
-                    class="btn"
-                    id="registerBtn">
-
-                    Create Account
-
-                </button>
-
-
-            </form>
-
-
-            <p class="login-text">
-
-                Already have an account?
-
-                <a href="login.html">
-                    Login here
-                </a>
-
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- SUPABASE + REGISTER LOGIC -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script src="js/supabase.js"></script>
-
-    <script src="js/register.js"></script>
-
-
-</body>
-
-</html>
+                    #0
