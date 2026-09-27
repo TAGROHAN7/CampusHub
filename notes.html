@@ -1,176 +1,307 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Resources - CampusHub</title>
 
+
+    <!-- SUPABASE -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         body {
             margin: 0;
+
             font-family: Arial, sans-serif;
+
             background: #f5f8f3;
+
             color: #173b2b;
         }
 
+
+        /* HEADER */
+
         header {
-            background: linear-gradient(135deg, #062e1f, #0b4d33, #123f2d);
+            background:
+                linear-gradient(
+                    135deg,
+                    #062e1f,
+                    #0b4d33,
+                    #123f2d
+                );
+
             color: white;
+
             padding: 20px 45px;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
-            box-shadow: 0 6px 25px rgba(6, 46, 31, 0.25);
+
+            box-shadow:
+                0 6px 25px
+                rgba(6, 46, 31, 0.25);
         }
+
 
         .logo {
             font-size: 28px;
+
             font-weight: bold;
         }
 
+
         nav {
             display: flex;
+
             gap: 24px;
+
             align-items: center;
         }
 
+
         nav a {
             color: #f4f1df;
+
             text-decoration: none;
+
             font-size: 15px;
+
             font-weight: 600;
+
             transition: 0.3s;
         }
+
 
         nav a:hover {
             color: #d4af37;
         }
 
+
+        /* MAIN SECTION */
+
         section {
             text-align: center;
+
             padding: 60px 20px;
         }
 
+
         section h1 {
             font-size: 42px;
+
             margin: 0;
+
             color: #073b28;
         }
+
 
         section p {
             color: #66756d;
+
             font-size: 16px;
+
             margin-top: 12px;
         }
 
+
+        /* SEARCH */
+
         #searchBox {
             border: 1px solid #d8e2d8;
+
             outline: none;
+
             border-radius: 35px;
+
             padding: 17px 25px;
+
             width: 80%;
+
             max-width: 600px;
+
             margin: 28px 0;
+
             font-size: 16px;
+
             background: white;
+
             color: #173b2b;
-            box-shadow: 0 10px 30px rgba(6, 46, 31, 0.10);
+
+            box-shadow:
+                0 10px 30px
+                rgba(6, 46, 31, 0.10);
         }
+
 
         #searchBox:focus {
             border-color: #c5a227;
-            box-shadow: 0 0 0 4px rgba(197, 162, 39, 0.12);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(197, 162, 39, 0.12);
         }
+
+
+        /* RESOURCES */
 
         #resources {
             width: 90%;
+
             max-width: 950px;
+
             margin: 30px auto;
+
             text-align: left;
         }
 
+
         #resources > div {
             background: white;
+
             padding: 25px;
+
             margin: 20px 0;
+
             border-radius: 18px;
+
             border: 1px solid #dce6dc;
-            box-shadow: 0 10px 30px rgba(6, 46, 31, 0.08);
+
+            box-shadow:
+                0 10px 30px
+                rgba(6, 46, 31, 0.08);
+
             transition: 0.3s;
         }
+
 
         #resources > div:hover {
             transform: translateY(-5px);
+
             border-color: #c5a227;
-            box-shadow: 0 18px 35px rgba(6, 46, 31, 0.15);
+
+            box-shadow:
+                0 18px 35px
+                rgba(6, 46, 31, 0.15);
         }
+
 
         #resources h3 {
             margin: 0 0 17px;
+
             color: #073b28;
+
             font-size: 19px;
+
             word-break: break-word;
         }
 
+
         #resources a {
             display: inline-block;
+
             padding: 11px 20px;
-            background: linear-gradient(135deg, #0b4d33, #087044);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b4d33,
+                    #087044
+                );
+
             color: white;
+
             text-decoration: none;
+
             border-radius: 9px;
+
             font-weight: 600;
+
             transition: 0.3s;
         }
 
+
         #resources a:hover {
-            background: linear-gradient(135deg, #087044, #0b4d33);
+            background:
+                linear-gradient(
+                    135deg,
+                    #087044,
+                    #0b4d33
+                );
+
             transform: translateY(-2px);
         }
+
+
+        /* MOBILE */
 
         @media (max-width: 700px) {
 
             header {
                 padding: 18px 20px;
+
                 flex-direction: column;
+
                 gap: 18px;
             }
 
+
             nav {
                 flex-wrap: wrap;
+
                 justify-content: center;
+
                 gap: 14px;
             }
+
 
             section {
                 padding: 40px 15px;
             }
 
+
             section h1 {
                 font-size: 32px;
             }
+
 
             #searchBox {
                 width: 95%;
             }
 
+
             #resources {
                 width: 95%;
             }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
+
+    <!-- HEADER -->
 
     <header>
 
@@ -178,21 +309,51 @@
             CampusHub
         </div>
 
+
         <nav>
-            <a href="index.html">Home</a>
-            <a href="notes.html">Resources</a>
-            <a href="upload.html">Upload</a>
-            <a href="login.html">Login</a>
-            <a href="#" id="logoutBtn">Logout</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+
+            <a href="notes.html">
+                Resources
+            </a>
+
+
+            <a href="upload.html">
+                Upload
+            </a>
+
+
+            <a href="login.html">
+                Login
+            </a>
+
+
+            <a href="#" id="logoutBtn">
+                Logout
+            </a>
+
         </nav>
 
     </header>
 
+
+    <!-- RESOURCES -->
+
     <section>
 
-        <h1>Study Resources</h1>
+        <h1>
+            Study Resources
+        </h1>
 
-        <p>Find and access your study materials easily.</p>
+
+        <p>
+            Find and access your study materials easily.
+        </p>
+
 
         <input
             type="text"
@@ -200,17 +361,23 @@
             placeholder="🔍 Search notes..."
         >
 
+
         <div id="resources"></div>
 
     </section>
+
+
+    <!-- SUPABASE + RESOURCES LOGIC -->
 
     <script>
 
         const SUPABASE_URL =
             "https://ebmwmgekpfedcwwzvmyk.supabase.co";
 
+
         const SUPABASE_KEY =
             "sb_publishable_K1ZLfHc5IsUQHr7cB81Wrg_aUEPmHyR";
+
 
         const supabaseClient =
             supabase.createClient(
@@ -219,10 +386,15 @@
             );
 
 
+        /* CHECK LOGIN */
+
         async function checkLogin() {
 
             const { data: { session } } =
-                await supabaseClient.auth.getSession();
+                await supabaseClient
+                    .auth
+                    .getSession();
+
 
             if (!session) {
 
@@ -232,40 +404,66 @@
                 return false;
             }
 
+
             return true;
         }
 
+
+        /* LOAD RESOURCES */
 
         async function loadResources() {
 
             const loggedIn =
                 await checkLogin();
 
+
             if (!loggedIn) {
                 return;
             }
 
+
             const container =
-                document.getElementById("resources");
+                document.getElementById(
+                    "resources"
+                );
+
 
             container.innerHTML =
                 "<p>Loading resources...</p>";
 
 
             const { data: { user } } =
-                await supabaseClient.auth.getUser();
+                await supabaseClient
+                    .auth
+                    .getUser();
+
+
+            if (!user) {
+
+                window.location.href =
+                    "register.html";
+
+                return;
+            }
 
 
             const { data, error } =
                 await supabaseClient
                     .from("Resources")
                     .select("*")
-                    .eq("user_id", user.id);
+                    .eq(
+                        "user_id",
+                        user.id
+                    );
 
 
             if (error) {
 
-                console.error(error);
+                console.error(
+                    "Database error:",
+                    error
+                );
+
 
                 container.innerHTML =
                     "<p>Failed to load resources.</p>";
@@ -286,35 +484,53 @@
             container.innerHTML = "";
 
 
-            for (const resource of data) {
+            /* CREATE RESOURCE CARDS */
 
-                const { data: urlData, error: urlError } =
-                    await supabaseClient
-                        .storage
-                        .from("Resources")
-                        .createSignedUrl(
-                            resource.file_name,
-                            3600
-                        );
+            for (
+                const resource of data
+            ) {
+
+
+                const {
+                    data: urlData,
+                    error: urlError
+                } = await supabaseClient
+                    .storage
+                    .from("Resources")
+                    .createSignedUrl(
+                        resource.file_name,
+                        3600
+                    );
 
 
                 if (urlError) {
 
-                    console.error(urlError);
+                    console.error(
+                        "Storage error:",
+                        urlError
+                    );
 
                     continue;
                 }
 
 
                 const card =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
 
 
                 card.innerHTML = `
-                    <h3>📄 ${resource.title}</h3>
+
+                    <h3>
+                        📄 ${resource.title}
+                    </h3>
 
                     <p>
-                        <strong>Subject:</strong>
+                        <strong>
+                            Subject:
+                        </strong>
+
                         ${resource.subject}
                     </p>
 
@@ -325,98 +541,19 @@
                     <a
                         href="${urlData.signedUrl}"
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Open / Download
                     </a>
+
                 `;
 
 
                 container.appendChild(card);
+
             }
+
         }
 
 
-        loadResources();
-
-
-        document
-            .getElementById("searchBox")
-            .addEventListener(
-                "input",
-                function () {
-
-                    const searchText =
-                        this.value.toLowerCase();
-
-
-                    const items =
-                        document.querySelectorAll(
-                            "#resources > div"
-                        );
-
-
-                    items.forEach(
-                        function (item) {
-
-                            const fileName =
-                                item.innerText
-                                    .toLowerCase();
-
-
-                            if (
-                                fileName.includes(
-                                    searchText
-                                )
-                            ) {
-
-                                item.style.display =
-                                    "block";
-
-                            } else {
-
-                                item.style.display =
-                                    "none";
-                            }
-                        }
-                    );
-                }
-            );
-
-
-        document
-            .getElementById("logoutBtn")
-            .addEventListener(
-                "click",
-                async function (event) {
-
-                    event.preventDefault();
-
-
-                    const { error } =
-                        await supabaseClient
-                            .auth
-                            .signOut();
-
-
-                    if (error) {
-
-                        alert(
-                            "Logout failed: " +
-                            error.message
-                        );
-
-                        return;
-                    }
-
-
-                    window.location.href =
-                        "login.html";
-                }
-            );
-
-    </script>
-
-</body>
-
-</html>
-```
+        /* START */
