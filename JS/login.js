@@ -20,5 +20,5 @@ loginForm.addEventListener("submit", async function (e) {
 
     document.getElementById("loginMessage").textContent = "Login successful!";
 
-    window.location.href = "notes.html";
+    window.location.href = "index.html";
 });
