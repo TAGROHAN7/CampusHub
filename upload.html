@@ -10,8 +10,6 @@
 
     <title>Upload Resource - CampusHub</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <style>
 
         * {
@@ -215,7 +213,9 @@
 
 </head>
 
+
 <body>
+
 
     <header>
 
@@ -246,7 +246,9 @@
             Share useful study materials with fellow students.
         </p>
 
+
         <form id="uploadForm">
+
 
             <label>Resource Title</label>
 
@@ -256,6 +258,7 @@
                 placeholder="Enter resource title"
                 required
             >
+
 
             <label>Subject</label>
 
@@ -291,12 +294,14 @@
 
             </select>
 
+
             <label>Description</label>
 
             <textarea
                 id="description"
                 placeholder="Enter short description"
             ></textarea>
+
 
             <label>Upload File</label>
 
@@ -305,6 +310,7 @@
                 id="file"
                 required
             >
+
 
             <button type="submit">
                 Upload Resource
@@ -315,34 +321,37 @@
     </div>
 
 
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- SUPABASE CONFIG -->
+
+    <script src="JS/SUPABASE.JS"></script>
+
+
     <script>
-
-        const SUPABASE_URL =
-            "https://ebmwmgekpfedcwwzvmyk.supabase.co";
-
-        const SUPABASE_KEY =
-            "sb_publishable_K1ZLfHc5IsUQHr7cB81Wrg_aUEPmHyR";
-
-
-        window.supabaseClient =
-            window.supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_KEY
-            );
-
 
         async function checkLogin() {
 
-            const { data: { session } } =
-                await window.supabaseClient.auth.getSession();
+            const {
+                data: { session }
+            } = await window.supabaseClient
+                .auth
+                .getSession();
+
 
             if (!session) {
 
                 window.location.href =
                     "register.html";
 
-                return;
+                return false;
             }
+
+
+            return true;
         }
 
 
@@ -360,23 +369,26 @@
 
                     const title =
                         document
-                        .getElementById("title")
-                        .value;
+                            .getElementById("title")
+                            .value;
+
 
                     const subject =
                         document
-                        .getElementById("subject")
-                        .value;
+                            .getElementById("subject")
+                            .value;
+
 
                     const description =
                         document
-                        .getElementById("description")
-                        .value;
+                            .getElementById("description")
+                            .value;
+
 
                     const file =
                         document
-                        .getElementById("file")
-                        .files[0];
+                            .getElementById("file")
+                            .files[0];
 
 
                     if (!file) {
@@ -389,7 +401,9 @@
                     }
 
 
-                    const { data: { user } } =
+                    const {
+                        data: { user }
+                    } =
                         await window.supabaseClient
                             .auth
                             .getUser();
@@ -409,13 +423,17 @@
 
 
                     const fileName =
-    user.id +
-    "/" +
-    Date.now() +
-    "_" +
-    file.name;
+                        user.id +
+                        "/" +
+                        Date.now() +
+                        "_" +
+                        file.name;
 
-                    const { data, error } =
+
+                    const {
+                        data,
+                        error
+                    } =
                         await window.supabaseClient
                             .storage
                             .from("Resources")
@@ -436,7 +454,9 @@
                     }
 
 
-                    const { error: dbError } =
+                    const {
+                        error: dbError
+                    } =
                         await window.supabaseClient
                             .from("Resources")
                             .insert([
@@ -475,5 +495,7 @@
 
     </script>
 
+
 </body>
+
 </html>
