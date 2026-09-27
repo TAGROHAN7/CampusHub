@@ -58,4 +58,491 @@
 
             font-weight: bold;
 
-            letter-spacing: 
+            letter-spacing: 0.5px;
+        }
+
+
+        nav {
+            display: flex;
+
+            gap: 24px;
+
+            align-items: center;
+        }
+
+
+        nav a {
+            color: #f4f1df;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+
+        /* HERO */
+
+        .hero {
+            min-height: 520px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    rgba(11, 77, 51, 0.15),
+                    transparent 55%
+                ),
+                #f5f8f3;
+        }
+
+
+        .hero h1 {
+            font-size: 52px;
+
+            max-width: 850px;
+
+            margin: 0;
+
+            color: #073b28;
+
+            letter-spacing: -1.5px;
+        }
+
+
+        .hero p {
+            max-width: 650px;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: #66756d;
+
+            margin: 20px 0 32px;
+        }
+
+
+        /* BUTTON */
+
+        .btn {
+            display: inline-block;
+
+            padding: 14px 28px;
+
+            background: linear-gradient(
+                135deg,
+                #0b4d33,
+                #087044
+            );
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 8px 20px
+                rgba(8, 112, 68, 0.25);
+
+            transition: 0.3s;
+        }
+
+
+        .btn:hover {
+            transform: translateY(-3px);
+
+            background: linear-gradient(
+                135deg,
+                #087044,
+                #0b4d33
+            );
+
+            box-shadow:
+                0 12px 25px
+                rgba(8, 112, 68, 0.30);
+        }
+
+
+        /* SUBJECTS */
+
+        .subjects {
+            padding: 70px 20px;
+
+            background: white;
+
+            text-align: center;
+        }
+
+
+        .subjects h2 {
+            font-size: 34px;
+
+            margin: 0 0 40px;
+
+            color: #073b28;
+        }
+
+
+        .subject-container {
+            max-width: 1050px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* SUBJECT CARD */
+
+        .subject-card {
+            background: #fdfefd;
+
+            border: 1px solid #dce6dc;
+
+            border-radius: 18px;
+
+            padding: 30px 20px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(6, 46, 31, 0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .subject-card:hover {
+            transform: translateY(-7px);
+
+            border-color: #c5a227;
+
+            box-shadow:
+                0 18px 35px
+                rgba(6, 46, 31, 0.15);
+        }
+
+
+        .subject-card h3 {
+            color: #0b4d33;
+
+            font-size: 21px;
+
+            margin: 0 0 12px;
+        }
+
+
+        .subject-card p {
+            color: #66756d;
+
+            line-height: 1.5;
+
+            margin: 0;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+            background: #062e1f;
+
+            color: #dfe9e2;
+
+            text-align: center;
+
+            padding: 25px 15px;
+
+            font-size: 14px;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 18px;
+            }
+
+
+            nav {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 14px;
+            }
+
+
+            .hero {
+                min-height: 450px;
+
+                padding: 50px 20px;
+            }
+
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+
+            .hero p {
+                font-size: 16px;
+            }
+
+
+            .subject-container {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+
+            .subject-container {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            CampusHub
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+
+            <a href="notes.html">
+                Resources
+            </a>
+
+
+            <a href="upload.html">
+                Upload
+            </a>
+
+
+            <a href="login.html">
+                Login
+            </a>
+
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Student Notes & Resources
+        </h1>
+
+
+        <p>
+            Share, discover and download useful
+            study resources with fellow students.
+        </p>
+
+
+        <a
+            href="notes.html"
+            class="btn"
+        >
+            Explore Resources
+        </a>
+
+    </section>
+
+
+    <!-- SUBJECTS -->
+
+    <section class="subjects">
+
+        <h2>
+            Popular Subjects
+        </h2>
+
+
+        <div class="subject-container">
+
+
+            <div class="subject-card">
+
+                <h3>
+                    Java
+                </h3>
+
+                <p>
+                    Programming notes and resources
+                </p>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <h3>
+                    Python
+                </h3>
+
+                <p>
+                    Python notes and practicals
+                </p>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <h3>
+                    Networking
+                </h3>
+
+                <p>
+                    Networking study material
+                </p>
+
+            </div>
+
+
+            <div class="subject-card">
+
+                <h3>
+                    Database
+                </h3>
+
+                <p>
+                    DBMS notes and resources
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CampusHub | Student Resource Platform
+        </p>
+
+    </footer>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://ebmwmgekpfedcwwzvmyk.supabase.co";
+
+
+        const SUPABASE_KEY =
+            "sb_publishable_K1ZLfHc5IsUQHr7cB81Wrg_aUEPmHyR";
+
+
+        const supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        async function checkLogin() {
+
+            const { data: { session } } =
+                await supabaseClient
+                    .auth
+                    .getSession();
+
+
+            if (!session) {
+
+                window.location.href =
+                    "register.html";
+
+                return;
+            }
+
+        }
+
+
+        checkLogin();
+
+    </script>
+
+
+</body>
+
+</html>
+```
