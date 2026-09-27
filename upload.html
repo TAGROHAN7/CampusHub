@@ -547,6 +547,569 @@
 
     </script>
 
+<script>
+    async function checkLogin() {
+        const { data: { session } } =
+            await supabaseClient.auth.getSession();
+
+        if (!session) {
+            window.location.href = "register.html";
+        }
+    }
+
+    checkLogin();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Resource - CampusHub</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f8f3;
+            color: #173b2b;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #062e1f,
+                #0b4d33,
+                #123f2d
+            );
+
+            color: white;
+
+            padding: 20px 45px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 6px 25px
+                rgba(6, 46, 31, 0.25);
+        }
+
+        header h2 {
+            margin: 0;
+
+            font-size: 28px;
+        }
+
+        nav {
+            display: flex;
+
+            gap: 24px;
+
+            align-items: center;
+        }
+
+        nav a {
+            color: #f4f1df;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+
+        /* MAIN CONTAINER */
+
+        .container {
+            width: 90%;
+
+            max-width: 650px;
+
+            margin: 60px auto;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 22px;
+
+            border: 1px solid #dce6dc;
+
+            box-shadow:
+                0 18px 45px
+                rgba(6, 46, 31, 0.10);
+        }
+
+
+        /* TITLE */
+
+        h1 {
+            text-align: center;
+
+            color: #073b28;
+
+            font-size: 34px;
+
+            margin-top: 0;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+
+            color: #66756d;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* FORM */
+
+        label {
+            display: block;
+
+            margin-top: 20px;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+            color: #173b2b;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #d3ded5;
+
+            border-radius: 10px;
+
+            background: #fbfdfb;
+
+            color: #173b2b;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #c5a227;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(197, 162, 39, 0.12);
+        }
+
+        textarea {
+
+            height: 110px;
+
+            resize: vertical;
+        }
+
+
+        /* FILE INPUT */
+
+        input[type="file"] {
+
+            background: #f5f8f3;
+
+            cursor: pointer;
+
+            padding: 12px;
+        }
+
+
+        /* BUTTON */
+
+        button {
+
+            width: 100%;
+
+            margin-top: 28px;
+
+            padding: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b4d33,
+                    #087044
+                );
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 8px 20px
+                rgba(8, 112, 68, 0.22);
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+
+            transform: translateY(-3px);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #087044,
+                    #0b4d33
+                );
+
+            box-shadow:
+                0 12px 25px
+                rgba(8, 112, 68, 0.30);
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                padding: 18px 20px;
+
+                flex-direction: column;
+
+                gap: 18px;
+            }
+
+            nav {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 14px;
+            }
+
+            .container {
+
+                width: 94%;
+
+                margin: 35px auto;
+
+                padding: 25px 20px;
+            }
+
+            h1 {
+
+                font-size: 29px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h2>
+            CampusHub
+        </h2>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="notes.html">
+                Resources
+            </a>
+
+            <a href="upload.html">
+                Upload
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- UPLOAD FORM -->
+
+    <div class="container">
+
+        <h1>
+            Upload Resource
+        </h1>
+
+        <p class="subtitle">
+            Share useful study materials with fellow students.
+        </p>
+
+
+        <form id="uploadForm">
+
+
+            <label>
+                Resource Title
+            </label>
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Enter resource title"
+                required
+            >
+
+
+            <label>
+                Subject
+            </label>
+
+            <select id="subject" required>
+
+                <option value="">
+                    Select Subject
+                </option>
+
+                <option value="Java">
+                    Java
+                </option>
+
+                <option value="Python">
+                    Python
+                </option>
+
+                <option value="Networking">
+                    Networking
+                </option>
+
+                <option value="Software Engineering">
+                    Software Engineering
+                </option>
+
+                <option value="Embedded Systems">
+                    Embedded Systems
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="description"
+                placeholder="Enter short description"
+            ></textarea>
+
+
+            <label>
+                Upload File
+            </label>
+
+            <input
+                type="file"
+                id="file"
+                required
+            >
+
+
+            <button type="submit">
+                Upload Resource
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- SUPABASE -->
+
+    <script>
+
+        const SUPABASE_URL =
+            "https://ebmwmgekpfedcwwzvmyk.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_K1ZLfHc5IsUQHr7cB81Wrg_aUEPmHyR";
+
+        window.supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        document
+            .getElementById("uploadForm")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const title =
+                        document
+                        .getElementById("title")
+                        .value;
+
+                    const subject =
+                        document
+                        .getElementById("subject")
+                        .value;
+
+                    const description =
+                        document
+                        .getElementById("description")
+                        .value;
+
+                    const file =
+                        document
+                        .getElementById("file")
+                        .files[0];
+
+
+                    if (!file) {
+
+                        alert(
+                            "Please select a file."
+                        );
+
+                        return;
+                    }
+
+
+                    const fileName =
+                        Date.now() +
+                        "_" +
+                        file.name;
+
+
+                    const { data, error } =
+                        await window.supabaseClient
+                            .storage
+                            .from("Resources")
+                            .upload(
+                                fileName,
+                                file
+                            );
+
+
+                    if (error) {
+
+                        alert(
+                            "Upload failed: " +
+                            error.message
+                        );
+
+                        return;
+                    }
+
+
+                    const { error: dbError } =
+                        await window.supabaseClient
+                            .from("Resources")
+                            .insert([
+                                {
+                                    title: title,
+                                    subject: subject,
+                                    description: description,
+                                    file_name: fileName
+                                }
+                            ]);
+
+
+                    if (dbError) {
+
+                        alert(
+                            "File uploaded, but resource details were not saved: " +
+                            dbError.message
+                        );
+
+                        return;
+                    }
+
+
+                    alert(
+                        "Resource uploaded successfully!"
+                    );
+
+
+                    document
+                        .getElementById("uploadForm")
+                        .reset();
+
+                }
+            );
+
+    </script>
+
 
 </body>
 
